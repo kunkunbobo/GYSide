@@ -77,7 +77,7 @@ class GYSideAnimatedTransitioning: NSObject,UIViewControllerAnimatedTransitionin
         
         if self.config.animationType == .translationMask {
             fromTransform = CGAffineTransform.init(translationX: 0, y: 0)
-            containerView.bringSubview(toFront: toController.view)
+            containerView.bringSubviewToFront(toController.view)
         }else if self.config.animationType == .zoom {
             let t1: CGAffineTransform = CGAffineTransform.init(translationX: -flag * width * config.zoomOffsetRelative, y: 0)
             let t2: CGAffineTransform = CGAffineTransform.init(scaleX: config.zoomRelative, y: config.zoomRelative)
@@ -101,7 +101,7 @@ class GYSideAnimatedTransitioning: NSObject,UIViewControllerAnimatedTransitionin
                 transitionContext.completeTransition(true)
                 containerView.addSubview(fromController.view)
                 if self.config.animationType == .translationMask {
-                    containerView.bringSubview(toFront: toController.view)
+                    containerView.bringSubviewToFront(toController.view)
                 }
             }else {
                 mask?.destroy()
@@ -139,7 +139,7 @@ class GYSideAnimatedTransitioning: NSObject,UIViewControllerAnimatedTransitionin
             fromTransform = CGAffineTransform.init(translationX: flag * width, y: 0)
         }else if self.config.animationType == .zoom {
             fromTransform = CGAffineTransform.init(translationX: 0, y: 0)
-            containerView.bringSubview(toFront: toController.view)
+            containerView.bringSubviewToFront(toController.view)
         }
         
         UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: {
@@ -152,7 +152,7 @@ class GYSideAnimatedTransitioning: NSObject,UIViewControllerAnimatedTransitionin
                 mask?.destroy()
             }else {
                 if self.config.animationType != .zoom {
-                    containerView.bringSubview(toFront: fromController.view)
+                    containerView.bringSubviewToFront(fromController.view)
                 }
             }
         }
